@@ -22,8 +22,6 @@ program.option(
 program.parse(process.argv);
 const options = program.opts();
 
-const args = { language: "node js", task: "print 10 numbers" };
-
 const llm = new OpenAI({});
 
 const chatTemplate = new PromptTemplate({
@@ -46,8 +44,8 @@ const combinedChains = RunnableSequence.from([
 ]);
 
 const result = await combinedChains.invoke({
-  language: args.language,
-  task: args.task,
+  language: options.language,
+  task: options.task,
 });
 
 console.log(result);
